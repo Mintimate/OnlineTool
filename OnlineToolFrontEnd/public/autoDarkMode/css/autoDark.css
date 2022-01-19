@@ -1,0 +1,123 @@
+#xm {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 91px;
+    height: 79px;
+    transform: translate(0,30px);
+    background: url(../img/zj.png);
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    z-index: 999;
+}
+
+#xm:hover {
+    transform: translateY(0)
+}
+[data-user-color-scheme="light"]{
+    --card-color: #ffffff;
+    --board-bg-color: #ffffff;
+    --second-bg-color: #e8e8e8;
+    --board-color: 1px solid rgba(0,0,0,.125);
+    --text-color: #424242;
+    --second-text-color:#000;
+    --brightness--:brightness(1);
+    --tips-color: linear-gradient(to right, red, blue);
+}
+[data-user-color-scheme="dark"]{
+    --card-color: #424242;
+    --board-bg-color: #424242;
+    --second-bg-color: #696969;
+    --board-color: 1px solid rgba(255, 255, 255, 0.3);
+    --text-color: #E0E0E0;
+    --second-text-color:#fff;
+    --brightness--:brightness(0.75);
+    --tips-color: linear-gradient(to right, #ffa8a8, #c0c0ea);
+}
+html{
+    background-color:var(--board-bg-color);
+}
+body{
+    background-color:var(--board-bg-color);
+    color: var(--text-color);
+
+}
+.dropdown-menu{
+    background-color:var(--second-bg-color);
+}
+.dropdown-item{
+    color: var(--second-text-color);
+}
+.card{
+    background-color:var(--board-bg-color);
+    color: var(--text-color);
+    border: var(--board-color);
+}
+.navbar-light .navbar-nav .nav-link{
+    color: var(--text-color);
+}
+span{
+    color: var(--text-color);
+}
+td{
+    color: var(--text-color);
+}
+.navbar-light .navbar-text{
+    color: var(--text-color);
+}
+.navbar-light .navbar-brand{
+    color: var(--text-color);
+}
+.navbar-light .navbar-toggler-icon{
+    color: var(--text-color);
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    color: #ee6250;
+}
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+    color: #ee6250;
+}
+.navbar-light .navbar-brand:hover{
+    color: #ee6250;
+}
+.navbar-light .navbar-brand:focus{
+    color: var(--text-color);
+}
+
+#tittle{
+    color: var(--text-color);
+}
+.el-date-table td span{
+
+}
+.el-button span{
+    color: #FFFFFF;
+}
+.text-muted{
+    color: var(--text-color)!important;
+}
+.card-header{
+    border-bottom: var(--board-color);
+}
+/*RGB滚动条*/
+::-webkit-scrollbar{
+    background: linear-gradient( #0055ff,#ff7491,#dc3545);
+}
+
+::-webkit-scrollbar {
+    width: .5rem;
+    height: .8rem;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #90a1ad;
+}
+/*RGB滚动条 END*/
+
+label{
+    color: var(--text-color);
+}
+span[role="presentation"]{
+    color: #424242!important;
+}
