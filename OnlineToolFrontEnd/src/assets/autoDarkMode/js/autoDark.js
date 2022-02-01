@@ -74,5 +74,7 @@ function checkNightMode() {
 
 }
 
-//检查当前主题模式和图标是否对应End
-checkNightMode();
+export default {
+  switchNightMode,
+  checkNightMode
+}

@@ -12,11 +12,10 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav me-auto">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="networkToolDropdown" role="button"
-                 data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                 网络工具
               </a>
-              <ul class="dropdown-menu" aria-labelledby="networkToolDropdown">
+              <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/">IP查询</a>
                 </li>
                 <li><a class="dropdown-item" href="/curl">短链接生成</a></li>
@@ -34,8 +33,8 @@
                 字符/计算工具
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="randomNumber">范围随机数排列</a></li>
-                <li><a class="dropdown-item" href="statisticsChars">在线统计字数/符</a></li>
+                <li><a class="dropdown-item" href="/randomNumber">范围随机数排列</a></li>
+                <li><a class="dropdown-item" href="/statisticsChars">在线统计字数/符</a></li>
                 <li><a class="dropdown-item" href="/textBase64">Base64编码互转</a></li>
                 <li>
                   <hr class="dropdown-divider">
@@ -79,6 +78,7 @@
         </div>
       </div>
     </nav>
+    <i @click="switchNightMode" id="xm"></i>
     <router-view></router-view>
 
   </div>
@@ -88,6 +88,7 @@
 import {watchEffect} from 'vue'
 import {useStore} from "vuex";
 import {useMeta} from 'vue-meta'
+import autoDark from "@/assets/autoDarkMode/js/autoDark"
 
 export default {
   setup() {
@@ -110,11 +111,16 @@ export default {
       meta.meta.meta[0].content = store.state.metaModule.metaInfo.keywords
       meta.meta.meta[1].content = store.state.metaModule.metaInfo.description
     })
+    return autoDark
+  },
+  mounted() {
+    autoDark.checkNightMode()
+    document.dispatchEvent(new Event('render-event'))
   }
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

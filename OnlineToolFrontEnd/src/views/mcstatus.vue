@@ -106,14 +106,16 @@ export default {
                 if (res.status == 202) {
                   this.MinecraftServerInfo.Tips = "操作失败，远程服务器可能不在线！！！"
                 } else {
-                  this.MinecraftServerInfo.Tips = "操作成功，以上是远程服务器的信息嗷╮(￣▽￣\"\"\)╭"
+                  this.MinecraftServerInfo.Tips = "操作成功，以上是远程服务器的信息嗷╮(￣▽￣\"\")╭"
                 }
               }
           )
           .finally(res => {
+            console.log(res)
             this.isLoading = false
           })
           .catch((res) => {  //失败的回调
+            console.log(res)
             this.$message("响应超时，游戏远程服务器异常！！！")
           })
     }

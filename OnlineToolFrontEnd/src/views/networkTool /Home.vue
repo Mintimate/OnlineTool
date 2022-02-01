@@ -54,7 +54,7 @@
   </main>
 </template>
 <script>
-import {get, post} from "../../until/request";
+import {get, post} from "@/until/request";
 
 export default {
   data() {
@@ -66,7 +66,7 @@ export default {
         area: undefined,
         remarks: undefined
       },
-      isDisabledBtn: false,
+      isDisabledBtn: true,
       UserIP: "loading……"
     }
   },
@@ -75,6 +75,7 @@ export default {
       .then(res => {
         const data = res.data
         this.UserIP = data
+        this.isDisabledBtn=false
       })
       .catch(() => {
         this.UserIP = "连接失败，请重试！"
@@ -96,6 +97,7 @@ export default {
             }
           )
           .catch((res) => {  //失败的回调
+            console.log(res)
             this.$message("查询失败：IP回调异常！！！")
           })
       }

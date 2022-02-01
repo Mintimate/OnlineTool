@@ -96,7 +96,7 @@ function verify(pwd) {
     }
 
     return true;
-};
+}
 
 /**
  * 是否存在重复字符串
@@ -115,7 +115,7 @@ function isRepeate(pwd) {
         }
     }
     return false;
-};
+}
 
 /**
  * 是否存在连续性字符串
@@ -158,4 +158,4 @@ function isSeries(pwd) {
         }
     }
     return false;
-};
+}

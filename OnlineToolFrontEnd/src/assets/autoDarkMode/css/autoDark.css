@@ -36,6 +36,9 @@
     --brightness--:brightness(0.75);
     --tips-color: linear-gradient(to right, #ffa8a8, #c0c0ea);
 }
+main{
+  background-color:var(--board-bg-color);
+}
 html{
     background-color:var(--board-bg-color);
 }

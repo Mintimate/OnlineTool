@@ -25,7 +25,6 @@
               @change="changeWorkMode"
           >
           </el-switch>
-          <el-button @click="Test"></el-button>
         </div>
       </div>
 
@@ -56,11 +55,6 @@ export default {
       return dealWithText(this.inputContent,this.WorkMode)
     }
   },
-  methods:{
-    Test(){
-      console.log(this.$store.state.sum);
-    }
-  }
 }
 </script>
 

@@ -65,12 +65,19 @@
             list-type="picture"
             action="/dataApiJava/processIMG/uploadImage"
             multiple>
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-            <div class="el-upload__tip pb-3" slot="tip">上传一张jpg/png/webp/bmp图片，且不超过10MB</div>
+
+            <el-icon class="el-icon--upload pt-5">
+              <upload-filled/>
+            </el-icon>
+            <div class="el-upload__text">
+              将文件拖到此处，或<em>点击上传</em>
+            </div>
+              <div class="el-upload__tip">
+                上传一张jpg/png/webp/bmp图片，且不超过10MB
+              </div>
           </el-upload>
           <div class="d-grid gap-2">
-            <el-button class="mt-2" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+            <el-button class="mt-2" type="success" @click="submitUpload">上传到服务器</el-button>
           </div>
         </el-card>
       </div>
@@ -155,14 +162,17 @@ export default {
       this.TypeList = res.imgType
     },
     onError(res) {
+      console.log(res)
       this.$message("嗷～出错了!!!请联系开发者……")
     },
     delIMG() {
       get("/dataApiJava/processIMG/delete/" + this.outPutIMGName)
         .then(res => {
+          console.log(res)
           this.$message("成功删除！！！")
         })
         .catch((res) => {  //失败的回调
+          console.log(res)
           this.$message("删除失败，原因：文件已经被删除～")
         })
     },

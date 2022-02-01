@@ -41,4 +41,4 @@ export function CountChineseCharacters(Words) {
     shuzi,
     zifu,
   }
-};
+}

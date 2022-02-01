@@ -1,32 +1,34 @@
 function password_generator( len,passwordNumber,passwordLowercase,passwordUppercase,passwordSpecial) {
+    let string=''
+    let numeric=''
+    let punctuation=''
     let length = (len)?(len):(10);
     if((passwordUppercase==false)&&(passwordLowercase==false)){
-        var string='';
+        string='';
     }
     else if ((passwordLowercase==true)&&(passwordUppercase==false)){
-        var string = 'abcdefghijklmnopqrstuvwxyz';
+        string = 'abcdefghijklmnopqrstuvwxyz';
     }
     else if ((passwordLowercase==false)&&(passwordUppercase==true)){
-        var string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     }
     else {
-        var string = 'abcdefghijklmnABCDEFGHIJKLMNopqrstuvwxyzOPQRSTUVWXYZ';
+        string = 'abcdefghijklmnABCDEFGHIJKLMNopqrstuvwxyzOPQRSTUVWXYZ';
     }
     if(passwordNumber){
-        var numeric = '0123456789';
+         numeric = '0123456789';
     }
     else {
-        var numeric='';
+         numeric='';
     }
     if (passwordSpecial){
-        var punctuation = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
+         punctuation = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
     }
     else {
-        var punctuation = '';
+         punctuation = '';
     }
     let password = "";
     let character = "";
-    let crunch = true;
     while( password.length<length ) {
         let entity1 = Math.ceil(string.length * Math.random()*Math.random());
         let entity2 = Math.ceil(numeric.length * Math.random()*Math.random());

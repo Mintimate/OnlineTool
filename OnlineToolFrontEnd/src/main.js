@@ -2,8 +2,6 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// elements
-import installElementPlus from './plugins/element'
 //  Markdown
 import VMdPreview from '@kangc/v-md-editor/lib/preview';
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor';
@@ -37,9 +35,20 @@ import 'codemirror/lib/codemirror.css';
 // highlightjs
 import hljs from 'highlight.js';
 
+//element-plus
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import { UploadFilled } from '@element-plus/icons-vue'
 // Vue-meta
 import {createMetaManager} from "vue-meta";
-import { useMeta } from 'vue-meta'
+
+// bootstrap
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.min"
+import "bootstrap/dist/js/bootstrap.bundle.min"
+import "bootstrap"
+
+import "./assets/autoDarkMode/css/autoDark.css"
 
 VMdPreview.use(githubTheme, {
     Hljs: hljs,
@@ -53,6 +62,7 @@ const app = createApp(App)
 const metaManager = createMetaManager(false, {
     meta: { tag: 'meta', nameless: true },
 });
-installElementPlus(app)
-app.use(store).use(router).use(VMdPreview).use(VMdEditor).use(metaManager,{refreshOnceOnNavigation:true})
+app.use(store).use(router).use(VMdPreview).use(VMdEditor)
+    .use(metaManager,{refreshOnceOnNavigation:true}).use(ElementPlus)
+    .component("UploadFilled",UploadFilled)
 app.mount('#app')
