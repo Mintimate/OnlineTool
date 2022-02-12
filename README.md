@@ -12,6 +12,7 @@
 └── OnlineToolRearEnd  # 页面后端（Springboot & Python）
 ```
 
+
 # 感谢
-- IP归属地查询开源代码：[https://github.com/out0fmemory/qqwry.dat](https://github.com/out0fmemory/qqwry.dat)
+- IP归属地查询开源代码：[https://github.com/animalize/qqwry-python3](https://github.com/animalize/qqwry-python3)
 - Minecraft服务器状态检测: [https://github.com/Dinnerbone/mcstatus](https://github.com/Dinnerbone/mcstatus)

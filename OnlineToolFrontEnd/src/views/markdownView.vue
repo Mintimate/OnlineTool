@@ -84,10 +84,10 @@ export default {
           "\n" +
           "## 教程\n" +
           "如果你并不会使用Markdown语句，可以 参考教程：\n" +
-          "- [Markdown菜鸟教程}(https://www.runoob.com/markdown/md-tutorial.html)\n" +
+          "- [Markdown菜鸟教程](https://www.runoob.com/markdown/md-tutorial.html)\n" +
           "\n" +
           "# 版权所有\n" +
-          "- Mintimate's Blog：[https://www.mintimate.cn] (https://www.mintimate.cn)\n" +
+          "- Mintimate's Blog：[https://www.mintimate.cn](https://www.mintimate.cn)\n" +
           "- Mintimate's Bilibili：[https://space.bilibili.com/355567627](https://space.bilibili.com/355567627)\n" +
           "## 感谢\n" +
           "- [Vue3](https://github.com/vuejs/vue-next)\n" +

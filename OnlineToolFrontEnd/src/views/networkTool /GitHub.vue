@@ -139,7 +139,7 @@ export default {
         this.submitDisabled = false
         this.workMode="Download"
       } else if (
-        new RegExp("^https://github.com/\\w+/\\w+(?:.git)?$").test(newValue)
+        new RegExp("^https://github.com/\\w+/(?:\\w|(?:\\.|\\-))+(?:.git)?$").test(newValue)
       ) {
         this.copyGitUrl="git clone "+window.location.origin+"/ghs/" +newValue
         this.submitDisabled = false

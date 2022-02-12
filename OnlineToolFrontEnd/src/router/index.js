@@ -133,20 +133,19 @@ const routes = [
         keywords:"CDN,GitHub,下载加速"
       }
     },
-    component: () => import(/* webpackChunkName: "about" */ '../views/networkTool /GitHub.vue')
+    component: () => import('../views/networkTool /GitHub.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    meta: {
+    path:'/oneindexM',
+    name:'oneindexM',
+    meta:{
       metaInfo: {
-        title: "关于-在线工具箱",
-        description: "关于本项目",
-        keywords:"Mintimate,打赏,捐赠,技术支持"
+        title: "OneIndex桥接页面",
+        description: "为Oneindex的安装提供网络桥接",
       }
     },
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    component: () => import('../views/networkTool /oneIndex.vue')
+  },
 ]
 
 const router = createRouter({
