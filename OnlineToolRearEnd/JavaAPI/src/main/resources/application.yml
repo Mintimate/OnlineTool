@@ -1,0 +1,26 @@
+server:
+  port: 8083
+spring:
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/, classpath:/resources/,classpath:/templates/, classpath:/static/, classpath:/public/, file:${upload.dir}
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mvc:
+    async:
+      request-timeout: 60000
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/onlineTool?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: host
+    password: 20000215
+mybatis-plus:
+  type-enums-package: cn.mintimate.tool.dao
+  global-config:
+    db-config:
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+      id-type: assign_id
+  mapper-locations: classpath:/mapper/*.xml
