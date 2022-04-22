@@ -120,13 +120,12 @@ export default {
       }
       data.append("UserURL",this.$refs.fullURL.value);
       axios.post(domainURL+"/add",data)
-          .then(res => {
-            if (res.data == "") {
-              this.$message.error("服务器奔溃了～");
+          .then(({data}) => {
+            if (!data.flag) {
+              this.$message.error(data.message);
             } else {
-              this.newURL = domainURL+"/" + res.data.shortCode;
+              this.newURL = domainURL+"/" + data.data.shortCode;
             }
-            console.log('res=>', res);
             if (!this.canClick) return   //改动的是这两行代码
             this.canClick = false
             this.content = this.totalTime + 's后可重新生成'
@@ -143,7 +142,7 @@ export default {
           })
           .catch((res) => {  //失败的回调
             console.log(res)
-            this.$message("删除失败，原因：文件已经被删除～")
+            this.$message("服务器响应失败～")
           })
     },
     copy() {

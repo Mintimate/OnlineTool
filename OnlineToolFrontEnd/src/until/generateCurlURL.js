@@ -12,7 +12,7 @@ export function jugeUrl(URL) {
 }
 
 export function judgeCode(alphaCode){
-    if (alphaCode=="Mintimate"){
+    if (alphaCode=="MintimateBlog"){
         return true;
     }
     else {

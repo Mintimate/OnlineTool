@@ -59,7 +59,7 @@
                   </ul>
                   <p>所有文件会使用<a href="https://workers.cloudflare.com/" target="_blank">Cloudfare加速</a>跳转。
                     文件会跳转至<a
-                    target="_blank" href="https://www.jsdelivr.com/">JSDelivr</a>，Git会进行重定向，重定向到<a href="https://cnpmjs.org" target="_blank">Cnpmjs.org</a> </p>
+                    target="_blank" href="https://www.jsdelivr.com/">JSDelivr</a>，Git会进行重定向，重定向到<a href="https://doc.fastgit.org/zh-cn/" target="_blank">Fastgit.org</a> </p>
                 </div>
                 <div>
                   注意：公共免费资源，请合理、适度使用(*≧ω≦)。
@@ -67,8 +67,8 @@
               </div>
             </div>
             <p class="text-center mt-5">
-              <span style="font-size: xx-small">
-              基于GPL开源项目：
+              <span style="font-size: small">
+              基于MIT协议开源项目：
               <a href="https://github.com/hunshcn/gh-proxy" target="_blank">
                 https://github.com/hunshcn/gh-proxy
               </a>

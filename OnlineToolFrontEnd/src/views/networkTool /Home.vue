@@ -7,15 +7,15 @@
           <code id="ip" class="ip">{{ UserIP }}</code>
         </h3>
         <div class="col-12 pb-3">
-          <div style="font-size: small;" v-if="!IP_Detail.isDisabled">
-            <span>地区：{{IP_Detail.area}}</span><br/>
-            <span>备注：{{IP_Detail.remarks}}</span>
+          <div style="font-size: small;" v-if="!IP_DetailIsDisabled">
+            <span>地区：{{ IP_Detail.mainInfo }}</span><br/>
+            <span>备注：{{ IP_Detail.appendInfo }}</span>
           </div>
         </div>
         <div class="col-12 pt-3">
           <div class="d-grid gap-2">
             <button
-              :disabled="isDisabledBtn"
+              :disabled="!IP_DetailButtonDisabled"
               class="btn btn-warning"
               @click="getDetails"
               type="button">
@@ -27,7 +27,7 @@
         <div class="row">
           <div class="col-6 text-center">如果你是Linux/Mac用户，可以在终端输入</div>
           <div class="col-6 text-center">
-            <code>curl https://flyinbug.cn/getIP</code>
+            <code>curl https://tool.mintimate.cn/getIP</code>
           </div>
         </div>
         <div class="row">
@@ -59,49 +59,44 @@ import {get, post} from "@/until/request";
 export default {
   data() {
     return {
-      DemoIMG: require("../../assets/IPUtils/Demo.png"),
-      NotFoundIMG: require("../../assets/IPUtils/404.png"),
+      DemoIMG: require("@/assets/IPUtils/Demo.png"),
+      NotFoundIMG: require("@/assets/IPUtils/404.png"),
+      IP_DetailIsDisabled: true,
+      IP_DetailButtonDisabled: false,
       IP_Detail: {
-        isDisabled: true,
-        area: undefined,
-        remarks: undefined
+        mainInfo: undefined,
+        appendInfo: undefined
       },
-      isDisabledBtn: true,
       UserIP: "loading……"
     }
   },
   mounted() {
-    get('/dataApiJava/getIP')
+    get('/dataApiJava/IP/getIP')
       .then(res => {
         const data = res.data
         this.UserIP = data
-        this.isDisabledBtn=false
+        this.IP_DetailButtonDisabled = true
       })
       .catch(() => {
         this.UserIP = "连接失败，请重试！"
-        this.isDisabledBtn = true
       })
   },
   methods: {
     getDetails() {
-      let userIPData = new FormData();
-      userIPData.append("ip", this.UserIP);
-      this.isDisabledBtn = true;
       // 不支持IPv6
-      if(/^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$/.test(this.UserIP)){
-        post("/dataApiPython/IP_Details", userIPData)
+      if (/^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$/.test(this.UserIP)) {
+        get("/dataApiJava/IP/getInfo/" + this.UserIP)
           .then(res => {
-              this.IP_Detail.isDisabled = false
-              this.IP_Detail.area = res.data.city
-              this.IP_Detail.remarks = res.data.isp
+              this.IP_Detail = res.data
+              this.IP_DetailIsDisabled = false
+              this.IP_DetailButtonDisabled = false
             }
           )
           .catch((res) => {  //失败的回调
             console.log(res)
             this.$message("查询失败：IP回调异常！！！")
           })
-      }
-      else {
+      } else {
         this.$message("查询失败：IP格式不支持⁄(⁄ ⁄ ⁄ω⁄ ⁄ ⁄)⁄")
       }
     }

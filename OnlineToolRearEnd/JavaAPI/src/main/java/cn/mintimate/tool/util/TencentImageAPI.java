@@ -8,7 +8,6 @@ import com.tencentcloudapi.common.profile.HttpProfile;
 import com.tencentcloudapi.tiia.v20190529.TiiaClient;
 import com.tencentcloudapi.tiia.v20190529.models.*;
 import net.coobird.thumbnailator.Thumbnails;
-import org.springframework.util.Base64Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,8 +41,6 @@ public class TencentImageAPI {
             for (DetectLabelItem item : resp.getLabels()){
                 list.add(item.getName());
             }
-            System.out.println(list.toString());
-//            System.out.println(DetectLabelResponse.toJsonString(resp));
         } catch (TencentCloudSDKException e) {
             System.out.println(e.toString());
         }

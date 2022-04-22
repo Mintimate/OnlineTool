@@ -11,11 +11,6 @@ spring:
   mvc:
     async:
       request-timeout: 60000
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/onlineTool?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: host
-    password: 20000215
 mybatis-plus:
   type-enums-package: cn.mintimate.tool.dao
   global-config:

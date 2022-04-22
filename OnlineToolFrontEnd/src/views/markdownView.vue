@@ -8,20 +8,11 @@
       </div>
     </div>
     <div class="row ">
-        <div class="col-lg-3 justify-content-start">
-          <div class="post-catalog bg-white">
-            <h5 style="padding: 0.5rem">目录</h5>
-            <ul style="padding-bottom: 0.5rem" class="catalog">
-              <div v-for="(item, index) in catalog">
-                <li :key="index" :style="{ marginLeft: item.level * 3 + '%',marginRight:5+'%'}">
-                  <a
-                      :href="'#' + item.id"
-                  >{{ item.title }}
-                  </a
-                  >
-                </li>
-              </div>
-            </ul>
+        <div class="col-lg-3  justify-content-start">
+          <div class="post-catalog catalog bg-white">
+            <h5 class="catalog-title" style="padding: 0.5rem">目录</h5>
+            <div style="padding-bottom: 0.5rem" class="catalog-detail">
+            </div>
           </div>
 
         </div>
@@ -35,21 +26,8 @@
                   left-toolbar="undo redo clear | h bold italic strikethrough quote | ul ol table hr | link image code"
                   right-toolbar="" mode='edit' height="400px"></v-md-editor>
             </el-collapse-item>
-            <el-collapse-item class="display-mobile" title="渲染目录" name="2">
-              <ul class="catalog">
-                <div v-for="(item, index) in catalog">
-                  <li :key="index" :style="{ marginLeft: item.level * 22 + 'px' }">
-                    <a
-                        :href="'#' + item.id"
-                    >{{ item.title }}
-                    </a
-                    >
-                  </li>
-                </div>
-              </ul>
-            </el-collapse-item>
             <el-collapse-item title="渲染文章" name="3">
-              <div ref="markdownContent">
+              <div id="github-markdown-body" ref="markdownContent">
                 <v-md-preview :text="markdownText"></v-md-preview>
               </div>
             </el-collapse-item>
@@ -63,6 +41,8 @@
 </template>
 
 <script>
+import tocbot from "tocbot";
+
 export default {
   name: "markdownView",
   data() {
@@ -100,71 +80,50 @@ export default {
     if (localStorage.markdownText) {
       this.markdownText = localStorage.markdownText;
     }
-    this.generatCatalog()
+    this.$nextTick(this.generatCatalog)
   },
   watch: {
     markdownText(markdownText) {
       localStorage.markdownText = markdownText;
-      this.generatCatalog();
+      this.$nextTick(this.generatCatalog);
     }
+  },
+  destroyed() {
+    tocbot.destroy();
   },
   methods: {
     generatCatalog() {
       // 生成目录
       // 保证渲染成功
-      this.$nextTick(() => {
         const article_content = this.$refs.markdownContent;
         const titleTag = ["H1", "H2", "H3"];
-        let titles = [];
         console.log(article_content.children[0].childNodes)
         article_content.children[0].children[0].childNodes.forEach((e, index) => {
           if (titleTag.includes(e.nodeName)) {
             const id = "header-" + index;
             e.setAttribute("id", id);
-            titles.push({
-              id: id,
-              title: e.innerHTML,
-              level: Number(e.nodeName.substring(1, 2)),
-              nodeName: e.nodeName
-            });
           }
         });
-        this.catalog = titles;
-      });
+        tocbot.init({
+          tocSelector: ".catalog-detail", //要把目录添加元素位置，支持选择器
+          contentSelector: "#github-markdown-body", //获取html的元素
+          headingSelector: "H1, H2, H3", //要显示的id的目录
+          onClick: function (e) {
+            e.preventDefault();
+          }
+        });
+
     }
   }
 }
 </script>
 
 <style scoped>
-
+a{
+  text-decoration:none;
+}
 .el-collapse-item {
   text-align: left;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-li:before {
-  position: absolute;
-  left: 0;
-  top: 11px;
-  content: "";
-  width: 0;
-  height: 0;
-  line-height: 0;
-  border: 4px solid transparent;
-  border-left: 5px solid #ccc;
-}
-
-li {
-  position: relative;
-  padding-left: 0.6rem;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
 }
 
 .bg-white {
