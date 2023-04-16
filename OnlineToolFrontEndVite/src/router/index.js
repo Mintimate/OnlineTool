@@ -11,6 +11,11 @@ const routes = [
     name: 'textBase64',
     component: () => import('@/views/characterTool/textBase64.vue')
   },
+  {
+    path: '/statisticsChars',
+    name: 'statisticsChars',
+    component: () => import('@/views/characterTool/statisticAlpha.vue')
+  },
 ]
 
 const router = createRouter({

@@ -2,19 +2,21 @@
   <div style="margin-top: 1.5rem">
     <a-row class="container">
       <a-col class="box">
-        <h1 class="banner_text">在线工具箱</h1>
+        <h1 class="banner_title">在线工具箱</h1>
         <p style="margin-top: 0px" class="banner_text">识别本机IP地址</p>
         <h3 style="text-align: center">
-          <code class="ip">119.233.239.182</code>
+          <code class="ip">{{ userIP }}</code>
         </h3>
         <div style="text-align: center">
-          <a-space>
-            <a-tag color="orange">福建省厦门市</a-tag>
-            <a-tag color="arcoblue">有线宽带(联通出口)</a-tag>
+          <a-space v-if="userIP_Info.display">
+            <a-tag color="orange">{{ userIP_Info.area }}</a-tag>
+            <a-tag color="arcoblue">{{ userIP_Info.remark }}</a-tag>
           </a-space>
         </div>
         <a-space style="margin-top: 1.5rem" class="full_width" direction="vertical">
-          <a-button status="success" type="primary" size="large" long>
+          <a-button @click="getIP_Info(userIP)"
+                    :disabled="userIP_Info.display"
+                    status="success" type="primary" size="large" long>
             <template #icon>
               <icon-code-square/>
             </template>
@@ -53,11 +55,18 @@
 </template>
 
 <script>
-import {onMounted, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
+import {get} from "@/until/request.js"
 
 export default {
   name: "ip.vue",
   setup() {
+    let userIP = ref("...加载中...");
+    let userIP_Info =reactive({
+      display: false,
+      area: "",
+      remark:""
+    })
     onMounted(() => {
       handleImgSrc();
     })
@@ -69,44 +78,24 @@ export default {
       NotFoundIMG.value = m.default;
       curlGetIPDemo.value = c.default;
     };
-    return {NotFoundIMG, curlGetIPDemo}
+    get("/IP/getIP").then(resp => {
+      userIP.value = resp
+    })
+    function getIP_Info(ip){
+      get("/IP/getInfo/"+ip.toString()).then(resp=>{
+        userIP_Info.display = true;
+        console.log(resp.data)
+        userIP_Info.area = resp.data.mainInfo;
+        userIP_Info.remark = resp.data.appendInfo;
+      })
+    }
+
+    return {userIP,userIP_Info, NotFoundIMG, curlGetIPDemo,getIP_Info}
   }
 }
 </script>
 
 <style scoped>
-@media (min-width: 576px) {
-  .container, .container-sm {
-    max-width: 540px;
-  }
-}
-
-
-@media (min-width: 768px) {
-  .container, .container-md, .container-sm {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container, .container-lg, .container-md, .container-sm {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container, .container-lg, .container-md, .container-sm, .container-xl {
-    max-width: 1140px;
-  }
-}
-
-
-.container {
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-}
-
 /** 背景 */
 .box {
   position: relative;
@@ -121,6 +110,11 @@ export default {
 }
 
 /** 头部标题 */
+.banner_title {
+  font-weight: 500;
+  text-align: center;
+}
+
 .banner_text {
   font-weight: 500;
   text-align: center;

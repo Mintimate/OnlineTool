@@ -1,60 +1,60 @@
 <template>
-  <div class="container">
-    <div class="row pt-3">
-      <div id="tittle" class="col-12 mt-2 mb-1 text-center">
-            <span style="font-size: x-large;">
-              <strong>在线Base64解码/编码</strong>
-            </span>
-      </div>
-      <div class="col-12 text-center">
-          <textarea class="form-control"
-                    v-model="inputContent"
-                    placeholder="输入(或粘贴)内容,并选择下列模式进行转化"
-                    rows="8"
-                    autofocus></textarea>
-      </div>
-      <div class="row pt-3 pb-3">
-        <div class="col-12 text-center">
-          <el-switch
-              style="display: block"
-              v-model="WorkMode"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="Text->Base64"
-              inactive-text="Base64->Text"
-              @change="changeWorkMode"
-          >
-          </el-switch>
+  <div style="margin-top: 1rem" class="container">
+    <a-row>
+      <a-col>
+        <div>
+          <h1>在线Base64解码/编码</h1>
         </div>
-      </div>
-
-    </div>
-    <div class="row">
-      <div class="col-12 text-center">
-          <textarea class="form-control" placeholder="此处显示输出结果" rows="8"
-                    id="outputContent" disabled>{{outputText}}</textarea>
-      </div>
-    </div>
+        <div class="col-12 text-center">
+          <a-textarea v-model="inputContent" style="height: 10rem" placeholder="输入(或粘贴)内容,并选择下列模式进行转化" allow-clear/>
+        </div>
+      </a-col>
+    </a-row>
+    <a-row>
+      <a-col>
+        <a-space style="margin: 15px 0px">
+          <a-switch v-model="WorkMode" size="large">
+            <template #checked>
+              Text->Base64
+            </template>
+            <template #unchecked>
+              Base64->Text
+            </template>
+          </a-switch>
+        </a-space>
+      </a-col>
+    </a-row>
+    <a-row>
+      <a-col>
+        <a-typography style="text-align: left;width: 100%">
+          <a-typography-title :heading="5">转码后信息如下：</a-typography-title>
+          <a-typography-paragraph style="word-break:break-all;"
+                                  :ellipsis="{rows: 10,
+        expandable: true,
+      }" copyable>
+            {{ outputText }}
+          </a-typography-paragraph>
+        </a-typography>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
 <script>
 import {dealWithText} from "@/until/Base64Core.js"
+import {ref, computed} from "vue";
 
 export default {
   name: "textBase64",
-  data() {
-    return {
-      WorkMode: true,
-      inputContent:"",
-      outputText:null,
-    }
-  },
-  computed:{
-    outputText(){
-      return dealWithText(this.inputContent,this.WorkMode)
-    }
-  },
+  setup() {
+    let WorkMode = ref(true);
+    let inputContent = ref("HelloWorld");
+    // 计算结果
+    let outputText = computed(() => {
+      return dealWithText(inputContent.value, WorkMode.value);
+    })
+    return {inputContent, outputText, WorkMode}
+  }
 }
 </script>
 
