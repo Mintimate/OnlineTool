@@ -138,6 +138,39 @@
   resolved "https://registry.npmmirror.com/@esbuild/win32-x64/-/win32-x64-0.17.16.tgz#260f19b0a3300d22c3a3f52722c671dc561edaa3"
   integrity sha512-xJ7OH/nanouJO9pf03YsL9NAFQBHd8AqfrQd7Pf5laGyyTt/gToul6QYOA/i5i/q8y9iaM5DQFNTgpi995VkOg==
 
+"@unhead/dom@1.1.25":
+  version "1.1.25"
+  resolved "https://registry.npmmirror.com/@unhead/dom/-/dom-1.1.25.tgz#08b4809e8dc3a4f7daf4f54db326dffcd96a3c8e"
+  integrity sha512-kJ5jhJFNQCyNENSw+mtmzgulA0kqUuXS3SRPl1umpofc8PH8tblSzXwqStxTj9r6E4wxJbEuygT/aHFJVioizw==
+  dependencies:
+    "@unhead/schema" "1.1.25"
+    "@unhead/shared" "1.1.25"
+
+"@unhead/schema@1.1.25":
+  version "1.1.25"
+  resolved "https://registry.npmmirror.com/@unhead/schema/-/schema-1.1.25.tgz#0fd0acfa1b3a672f235e41f0d2c4ba823af0ede5"
+  integrity sha512-ygmaxWgGTAq9CcB6zGY4+0HlGdQt/oMq+CM18tTnvOBY0Og/uPGt7roW8eH717GpTPibKRTpagSYzZYdL0tWeg==
+  dependencies:
+    hookable "^5.5.1"
+    zhead "^2.0.4"
+
+"@unhead/shared@1.1.25":
+  version "1.1.25"
+  resolved "https://registry.npmmirror.com/@unhead/shared/-/shared-1.1.25.tgz#acbdb5fc9b226563d120742958cee2e0da05cf45"
+  integrity sha512-KptKbk4py1MFYHYwDJ/0kPOs+95dYMrWIT1fCV9lGcVAwu20wIHh+WX18s+iEWhc66xkGRxgC/xsl4wJJFPE+w==
+  dependencies:
+    "@unhead/schema" "1.1.25"
+
+"@unhead/vue@^1.1.25":
+  version "1.1.25"
+  resolved "https://registry.npmmirror.com/@unhead/vue/-/vue-1.1.25.tgz#ff9c603349ccb9f6a69e6ded1e4878566d5565f8"
+  integrity sha512-ujincFHftg2N2i3G/gVkMyJ7CFzVyZ8SMb5cJCWZEnDBQGjgy3uvWT6EaM0d2jnaeXiYbB+iyY0O1o/H+XlpKQ==
+  dependencies:
+    "@unhead/schema" "1.1.25"
+    "@unhead/shared" "1.1.25"
+    hookable "^5.5.1"
+    unhead "1.1.25"
+
 "@vitejs/plugin-vue@^4.1.0":
   version "4.1.0"
   resolved "https://registry.npmmirror.com/@vitejs/plugin-vue/-/plugin-vue-4.1.0.tgz#b6a9d83cd91575f7ee15593f6444397f68751073"
@@ -386,6 +419,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+hookable@^5.5.1:
+  version "5.5.3"
+  resolved "https://registry.npmmirror.com/hookable/-/hookable-5.5.3.tgz#6cfc358984a1ef991e2518cb9ed4a778bbd3215d"
+  integrity sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==
+
 is-arrayish@^0.3.1:
   version "0.3.2"
   resolved "https://registry.npmmirror.com/is-arrayish/-/is-arrayish-0.3.2.tgz#4574a2ae56f7ab206896fb431eaeed066fdf8f03"
@@ -506,6 +544,16 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmmirror.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+unhead@1.1.25:
+  version "1.1.25"
+  resolved "https://registry.npmmirror.com/unhead/-/unhead-1.1.25.tgz#1aff7354ec536f7abc05ec85603b13e5c532ee21"
+  integrity sha512-KtTBgtQjxICoOjA4dyxJfj5fYoYJeYFUt/J8ulaTzbvTsXM9K+ztYjI65nf2CPYYXRCRz/iEt8trqcsGlsB5TQ==
+  dependencies:
+    "@unhead/dom" "1.1.25"
+    "@unhead/schema" "1.1.25"
+    "@unhead/shared" "1.1.25"
+    hookable "^5.5.1"
+
 vite@^4.2.0:
   version "4.2.1"
   resolved "https://registry.npmmirror.com/vite/-/vite-4.2.1.tgz#6c2eb337b0dfd80a9ded5922163b94949d7fc254"
@@ -535,3 +583,8 @@ vue@^3.2.47:
     "@vue/runtime-dom" "3.2.47"
     "@vue/server-renderer" "3.2.47"
     "@vue/shared" "3.2.47"
+
+zhead@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npmmirror.com/zhead/-/zhead-2.0.4.tgz#42509bbe85b790de9121301eac47d440d9073876"
+  integrity sha512-V4R94t3ifk9AURym6OskbKcnowzgp5Z88tkoL/NF67vyryNxC62u6mx5F1Ux4oh4+YN7FFmKYEyWy6m5kfPH6g==

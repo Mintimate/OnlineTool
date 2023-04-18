@@ -1,8 +1,8 @@
 <template>
   <div style="margin-top: 1rem" class="container">
     <a-row>
-      <a-col id="tittle" class="col-12 mt-2 mb-1 text-center">
-        <h1>在线Base64解码/编码</h1>
+      <a-col id="tittle">
+        <h1>统计字数字符</h1>
       </a-col>
     </a-row>
     <a-row>
@@ -63,10 +63,14 @@
 <script>
 import {CountChineseCharacters} from "@/until/statisticAlpha.js"
 import {ref, reactive, watch} from "vue";
+import {useHead} from "@unhead/vue";
 
 export default {
   name: "statisticAlpha",
   setup() {
+    useHead({
+      title: '统计字数字符-在线工具箱'
+    })
     let alpha = reactive({
       notWork: false,
       hanzi: 0,
