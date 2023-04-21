@@ -53,45 +53,42 @@
     </div>
   </div>
 </template>
-
-<script>
+<script setup>
+import {useHead} from '@unhead/vue'
 import {onMounted, reactive, ref} from "vue";
 import {get} from "@/until/request.js"
 
-export default {
-  name: "ip.vue",
-  setup() {
-    let userIP = ref("...加载中...");
-    let userIP_Info =reactive({
-      display: false,
-      area: "",
-      remark:""
-    })
-    onMounted(() => {
-      handleImgSrc();
-    })
-    let NotFoundIMG = ref("");
-    let curlGetIPDemo = ref("");
-    const handleImgSrc = async () => {
-      let m = await import("@/assets/IP_Utils/404.png");
-      let c = await import("@/assets/IP_Utils/curlGetIPDemo.png")
-      NotFoundIMG.value = m.default;
-      curlGetIPDemo.value = c.default;
-    };
-    get("/IP/getIP").then(resp => {
-      userIP.value = resp
-    })
-    function getIP_Info(ip){
-      get("/IP/getInfo/"+ip.toString()).then(resp=>{
-        userIP_Info.display = true;
-        console.log(resp.data)
-        userIP_Info.area = resp.data.mainInfo;
-        userIP_Info.remark = resp.data.appendInfo;
-      })
-    }
+useHead({
+  title: 'My awesome site'
+})
+let userIP = ref("...加载中...");
+let userIP_Info = reactive({
+  display: false,
+  area: "",
+  remark: ""
+})
+onMounted(() => {
+  handleImgSrc();
+})
+let NotFoundIMG = ref("");
+let curlGetIPDemo = ref("");
+const handleImgSrc = async () => {
+  let m = await import("@/assets/IP_Utils/404.png");
+  let c = await import("@/assets/IP_Utils/curlGetIPDemo.png")
+  NotFoundIMG.value = m.default;
+  curlGetIPDemo.value = c.default;
+};
+get("/IP/getIP").then(resp => {
+  userIP.value = resp
+})
 
-    return {userIP,userIP_Info, NotFoundIMG, curlGetIPDemo,getIP_Info}
-  }
+function getIP_Info(ip) {
+  get("/IP/getInfo/" + ip.toString()).then(resp => {
+    userIP_Info.display = true;
+    console.log(resp.data)
+    userIP_Info.area = resp.data.mainInfo;
+    userIP_Info.remark = resp.data.appendInfo;
+  })
 }
 </script>
 

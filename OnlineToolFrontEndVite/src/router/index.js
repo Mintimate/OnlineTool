@@ -4,7 +4,12 @@ const routes = [
   {
     path: '/',
     name: 'ip',
-    component: () => import('@/views/ip.vue')
+    component: () => import('@/views/ip.vue'),
+  },
+  {
+    path: '/processIMG',
+    name: 'processImage',
+    component: () => import('@/views/processImage.vue'),
   },
   {
     path: '/textBase64',
@@ -15,6 +20,11 @@ const routes = [
     path: '/statisticsChars',
     name: 'statisticsChars',
     component: () => import('@/views/characterTool/statisticAlpha.vue')
+  },
+  {
+    path: '/randomNumber',
+    name: 'randomNumber',
+    component: () => import('@/views/characterTool/randomNumber.vue')
   },
 ]
 

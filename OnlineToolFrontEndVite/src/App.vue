@@ -21,24 +21,27 @@
             </router-link>
             <a-menu-item key="1_1">Github加速</a-menu-item>
           </a-sub-menu>
+          <router-link to="/processIMG">
           <a-menu-item key="2">
             <template #icon>
               <icon-file-image/>
             </template>
             图片在线处理
           </a-menu-item>
+          </router-link>
           <a-sub-menu key="3">
             <template #icon>
               <icon-bulb/>
             </template>
             <template #title>字符/计算工具</template>
-            <router-link to="/textBase64">
-              <a-menu-item key="3_1">
-                Base64编码互转
-              </a-menu-item>
+            <router-link to="/randomNumber">
+              <a-menu-item key="3_1">范围随机数排列</a-menu-item>
             </router-link>
             <router-link to="/statisticsChars">
-            <a-menu-item key="3_2">统计字数/字符</a-menu-item>
+              <a-menu-item key="3_2">统计字数/字符</a-menu-item>
+            </router-link>
+            <router-link to="/textBase64">
+              <a-menu-item key="3_3">Base64编码互转</a-menu-item>
             </router-link>
           </a-sub-menu>
           <a-menu-item key="4">
@@ -53,12 +56,14 @@
             </template>
             Markdown渲染
           </a-menu-item>
-          <a-menu-item key="6">
-            <template #icon>
-              <icon-public/>
-            </template>
-            个人博客
-          </a-menu-item>
+          <a href="https://www.mintimate.cn" target="_blank">
+            <a-menu-item key="6">
+              <template #icon>
+                <icon-public/>
+              </template>
+              个人博客
+            </a-menu-item>
+          </a>
         </a-menu>
       </div>
       <div class="layout-header-menu-wrapper-right">
@@ -89,24 +94,24 @@
 
 <style scoped>
 /** 图标设置 */
-/deep/ .arco-menu-icon {
+:deep(.arco-menu-icon){
   margin-right: 5px !important;
 }
 
-/deep/ .arco-menu-has-icon {
+:deep(.arco-menu-has-icon){
   margin-left: 5px !important;
 }
 
-/deep/ .arco-menu-horizontal .arco-menu-item {
+:deep(.arco-menu-horizontal .arco-menu-item){
   padding: 0 8px;
 }
 
-/deep/ .arco-menu-horizontal {
+:deep(.arco-menu-horizontal) {
   margin-left: 5px;
 }
 
-a{
-  text-decoration:none;
+a {
+  text-decoration: none;
 }
 
 .layout-header {
