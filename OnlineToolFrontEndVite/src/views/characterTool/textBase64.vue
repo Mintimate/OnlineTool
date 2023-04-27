@@ -3,7 +3,7 @@
     <a-row>
       <a-col>
         <div>
-          <h1>在线Base64解码/编码</h1>
+          <h1>Base64解码/编码</h1>
         </div>
         <div class="col-12 text-center">
           <a-textarea v-model="inputContent" style="height: 10rem" placeholder="输入(或粘贴)内容,并选择下列模式进行转化" allow-clear/>
@@ -29,9 +29,7 @@
         <a-typography style="text-align: left;width: 100%">
           <a-typography-title :heading="5">转码后信息如下：</a-typography-title>
           <a-typography-paragraph style="word-break:break-all;"
-                                  :ellipsis="{rows: 10,
-        expandable: true,
-      }" copyable>
+                                  :ellipsis="{rows: 10, expandable: true,}" copyable>
             {{ outputText }}
           </a-typography-paragraph>
         </a-typography>
