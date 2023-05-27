@@ -11,3 +11,9 @@ spring:
   mvc:
     async:
       request-timeout: 60000
+# 企业微信推送
+wcon:
+  wecom_cid:
+  wecom_secret:
+  agent_id:
+  touser: @all
