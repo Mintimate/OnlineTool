@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /oneindexM
-Disallow: /*Api*
-Disallow: /data
-SiteMap: https://tool.mintimate.cn/sitemap.xml

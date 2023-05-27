@@ -1,7 +1,0 @@
-Flask==1.1.2
-Flask_Cors==3.0.10
-gevent==21.1.2
-mcstatus==6.5.0
-qqwry==1.0
-qqwry_py3==1.2.1
-Werkzeug==1.0.1

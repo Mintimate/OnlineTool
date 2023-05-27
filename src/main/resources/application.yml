@@ -1,0 +1,13 @@
+server:
+  port: 8083
+spring:
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/, classpath:/resources/,classpath:/templates/, classpath:/static/, classpath:/public/, file:${upload.dir}
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mvc:
+    async:
+      request-timeout: 60000

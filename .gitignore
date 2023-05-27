@@ -1,5 +1,21 @@
+## macOS日志文件 ##
 **/.DS_Store
-OnlineToolRearEnd/JavaAPI/.settings
-OnlineToolRearEnd/JavaAPI/.project
-OnlineToolRearEnd/JavaAPI/.classpath
-OnlineToolRearEnd/JavaAPI/.factorypath
+
+## IDEA工程文件 ##
+.idea
+
+## 测试文件 ##
+src/test/java/
+
+## 依赖文件 ##
+WebUI/node_modules
+
+## 打包输出文件 ##
+target
+WebUI/dist
+
+## 日志文件 ##
+logs/
+
+## 运行输出 ##
+file
