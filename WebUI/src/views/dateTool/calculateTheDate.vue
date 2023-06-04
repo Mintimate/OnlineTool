@@ -1,89 +1,124 @@
 <template>
-  <div style="margin-top: 1rem" class="container">
-    <a-row>
-      <a-col id="tittle">
-        <h1> 日期在线计算</h1>
-      </a-col>
-    </a-row>
-    <a-card style="text-align: left" title="请输入文件链接">
-      <a-input required placeholder="请输入Github上文件/仓库地址"
-               v-model="inputText"
-               @input="inputUrl()"
-               allow-clear search-button>
-        <template #append>
-          <a-button type="primary" status="warning" long style="height: 100%;width: 10rem"
-                    :disabled="submitDisabled"
-                    id="copyClick"
-                    :data-clipboard-text="copyGitUrl"
-                    @click="handleSubmit()">
-            下载/克隆
-          </a-button>
-        </template>
-      </a-input>
-    </a-card>
-
-    <a-row>
-      <a-col>
-        <a-typography style="text-align: left">
-          <a-typography-title :heading="3">使用说明</a-typography-title>
-          <a-typography-title :heading="5">加速模式</a-typography-title>
-          <a-typography-paragraph>
-            <ul>
-              <li>Git仓库克隆：如果链接判断为Git仓库的克隆地址（HTTPS），那么点击<code>下载/克隆</code>按钮为克隆模式，即->
-                复制
-                <code>git clone $URL</code>到剪贴板，其中<code>$URL</code>为加速后的Git仓库克隆地址。
-              </li>
-              <li>文件下载模式：如果链接判断为GitHub上文件、发布文件，那么点击/<code>下载/克隆</code>按钮，会在新标签页进行加速下载。具体支持的文件见下文。
-              </li>
-            </ul>
-          </a-typography-paragraph>
-
-          <a-typography-title :heading="5">文件下载模式</a-typography-title>
-          <a-typography-paragraph type="secondary">
-            支持的文件地址（<code>release、archive</code>以及文件，右键复制出来的链接都是符合标准的）：
-          </a-typography-paragraph>
-          <a-typography-paragraph type="secondary">
-            <ul>
-              <li>分支源码：https://github.com/Mintimate/h5ai_M/<code>archive/master.zip</code></li>
-              <li>release源码：https://github.com/Mintimate/h5ai_M/<code>archive/v0.1.0.tar.gz</code></li>
-              <li>release文件：https://github.com/Mintimate/h5ai_M/<code>releases/download/v0.1.0/example.zip</code>
-              </li>
-              <li>分支文件：https://github.com/Mintimate/h5ai_M/<code>blob/master/filename</code></li>
-            </ul>
-          </a-typography-paragraph>
-          <a-typography-paragraph type="secondary">
-            所有文件会使用
-            <a-link href="https://workers.cloudflare.com/" target="_blank">Cloudfare加速</a-link>
-            跳转。
-            文件会跳转至
-            <a-link target="_blank" href="https://www.jsdelivr.com/">JSDelivr</a-link>
-            ，Git会进行重定向，重定向到
-            <a-link href="https://doc.fastgit.org/zh-cn/" target="_blank">Fastgit.org</a-link>
-          </a-typography-paragraph>
-          <a-typography-paragraph type="secondary">
-            注意：公共免费资源，请合理、适度使用(*≧ω≦)。
-          </a-typography-paragraph>
-        </a-typography>
-      </a-col>
-    </a-row>
-    <div class="row mt-5">
-      <div class="col-12">
-        <p class="text-center mt-5">
-              <span style="font-size: small">
-              基于MIT协议开源项目：
-              <a-link href="https://github.com/Mintimate/gh-proxy" target="_blank">
-                https://github.com/Mintimate/gh-proxy
-              </a-link>
-              </span>
-        </p>
-      </div>
+    <div style="margin-top: 1rem" class="container">
+        <a-row>
+            <a-col id="tittle">
+                <h1> 日期在线计算</h1>
+            </a-col>
+        </a-row>
+        <a-card style="text-align: left" title="参数">
+            <a-form layout="horizontal"
+                    size="large"
+                    auto-label-width>
+                <a-form-item field="beginLine" label="起始日期"
+                             label-col-flex="5rem"
+                             label-col-style="margin-right: 4.5rem">
+                    <a-date-picker v-model="startDate" style="width: 15rem;"/>
+                    <template #extra>
+                        <div>起始日期，可以手动键盘输入，也可以用日历选择器选定嗷，默认为当天日期。</div>
+                    </template>
+                </a-form-item>
+                <a-form-item field="endLine" label="截止日期" label-col-flex="5rem"
+                             label-col-style="margin-right: 4.5rem">
+                    <a-date-picker v-model="endDate" style="width: 15rem;"/>
+                    <template #extra>
+                        <div>截止日期，可以手动键盘输入，也可以用日历选择器选定嗷。</div>
+                    </template>
+                </a-form-item>
+            </a-form>
+        </a-card>
+        <a-card style="text-align: left;margin-top: 1.5rem" title="操作">
+            <a-form layout="horizontal"
+                    size="large"
+                    auto-label-width>
+                <a-row :gutter="8">
+                    <a-col :xs="24" :lg="12">
+                        <a-form-item label-col-flex="0">
+                            <a-input-number :style="{width:'100%'}"
+                                            v-model="addDays"
+                                            mode="button"
+                                            size="large"
+                                            placeholder="请输入数字(支持正负整数)" allow-clear>
+                                <template #prefix>
+                                    起始时间
+                                </template>
+                                <template #suffix>
+                                    天后
+                                </template>
+                            </a-input-number>
+                            <template #extra>
+                                <div style="text-align: center">计算起始日期往前(后)N天的日。</div>
+                            </template>
+                            <a-button @click="addTheDays()" style="width: 10rem" status="success">确定</a-button>
+                        </a-form-item>
+                    </a-col>
+                    <a-col :xs="24" :lg="12">
+                        <a-form-item label-col-flex="0px"
+                                     label-col-style="margin-right: 4.5rem">
+                            <a-button @click="calculateTheDate()" type="primary" status="success" long>直接计算</a-button>
+                            <template #extra>
+                                <div>直接计算起始日期和截止日期之间相差多少天。</div>
+                            </template>
+                        </a-form-item>
+                    </a-col>
+                </a-row>
+            </a-form>
+        </a-card>
+        <a-card style="text-align: left;margin-top: 1.5rem" title="输出结果">
+            <a-typography-title v-html="dateResult" style="text-align: center" :heading="5"/>
+        </a-card>
     </div>
-  </div>
 </template>
 
 <script setup>
+import {onMounted, ref} from "vue";
+import {DateDifference,addDate} from "@/until/calculateDateUtil.js"
+import {Message} from "@arco-design/web-vue";
+import {useHead} from "@unhead/vue";
+
+useHead({
+    title: "日期计算-在线工具箱",
+    meta: [{
+        name: "description",
+        content: "在线计算两个日期间相隔几天、计算目标日期先后或向前推断几天后的日期",
+
+    },
+        {
+            name: "keywords",
+            content: "在线工具箱,开发者,几天后的日期,日期相隔几天"
+        },
+    ]
+})
+
+let dateResult = ref("等待用户操作");
+let startDate = ref();
+let endDate = ref();
+let addDays = ref();
+onMounted(() => {
+    // 获取当天时间，作为默认开始时间
+    startDate.value = new Date().Format("yyyy-MM-dd");
+})
+
+const calculateTheDate = ()=>{
+    let days=DateDifference(startDate.value,endDate.value);
+    if (isNaN(days)){
+        Message.warning("玩坏啦!!!请检查参数嗷～")
+    }
+    else {
+        dateResult.value = "距离截止日期还有：<span class='alert-important'>" + days + "天</span>嗷～"
+    }
+};
+const addTheDays = ()=>{
+    let days=addDays.value;
+    let newDay=addDate(startDate.value,days);
+    dateResult.value="起始日期后的<span class='alert-important'>"+days+"天</span>"+"是<span class='alert-important'>"+newDay+"</span>";
+
+}
 </script>
 
 <style scoped>
-
+:deep(.alert-important){
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
 </style>
