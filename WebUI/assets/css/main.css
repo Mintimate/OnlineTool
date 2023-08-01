@@ -1,0 +1,71 @@
+body, html {
+    margin: 0;
+    padding: 0;
+
+}
+
+html.dark body{
+    background-color: rgb(var(--color-gray-900) / 0.75);
+}
+
+.mobile-nav {
+    position: fixed;
+    left: 2rem;
+    bottom: 5rem;
+    width: 2rem;
+    height: 2rem;
+    transform: translate(0,30px);
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    z-index: 999;
+}
+
+h1{
+    color: var(--color-text-1);
+}
+
+p{
+    color:var(--color-text-2);
+}
+
+@media (min-width: 576px) {
+    .container, .container-sm {
+        max-width: 540px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .container, .container-md, .container-sm {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1140px;
+    }
+}
+
+/** 代码自动换行 */
+code{
+    word-break:break-all;
+}
+
+::-webkit-scrollbar {
+    background: linear-gradient(#05f,#ff7491,#dc3545);
+    width: 0.35rem;
+    height: 0.8rem
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #90a1ad
+}

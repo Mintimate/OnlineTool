@@ -1,6 +1,29 @@
-User-agent: *
+# robots.txt
+
+User-agent: * 
+Crawl-delay: 10
+
+# Allow critical pages
+Allow: /
+Allow: /sitemap.xml
+
+# Disallow other pages
 Disallow: /oneindexM
 Disallow: /*Api*
 Disallow: /data
 Disallow: /curl
-SiteMap: https://tool.mintimate.cn/sitemap.xml
+Disallow: /musicUrl
+
+# Specify sitemaps
+Sitemap: https://tool.mintimate.cn/sitemap.xml 
+
+# Specify host
+Host: https://tool.mintimate.cn
+
+# Longer crawl delay for new crawlers
+User-agent: NewCrawler 
+Crawl-delay: 20
+
+# Block bad bots
+User-agent: BadBot
+Disallow: /

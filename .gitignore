@@ -13,6 +13,10 @@ WebUI/node_modules
 ## 打包输出文件 ##
 target
 WebUI/dist
+WebUI/.output
+WebUI/.nuxt
+WebUI/.nitro
+WebUI/.cache
 
 ## 日志文件 ##
 logs/
